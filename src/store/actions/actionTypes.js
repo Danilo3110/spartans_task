@@ -1,0 +1,5 @@
+export const START_LOADING = 'START_LOADING';
+export const GET_USERS_ALL = 'GET_USERS_ALL';
+export const SET_USERS_ALL = 'SET_USERS_ALL';
+
+export const SET_USERS_PER_PAGE = 'SET_USERS_PER_PAGE';
