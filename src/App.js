@@ -4,7 +4,7 @@ import loading from './components/Loading';
 import './App.css';
 
 const Page404 = React.lazy(() => import('./components/Page404/Page404'));
-const DefaultLayout = React.lazy(() => import('./components/DefaultLayout'));
+const DefaultLayout = React.lazy(() => import('./containers/DefaultLayout'));
 
 const App = props => {
 

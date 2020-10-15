@@ -1,0 +1,11 @@
+.Company {
+  background: -webkit-linear-gradient(225deg, #1de9b6, #1dc4e9);
+  background: linear-gradient(-135deg, #1de9b6, #1dc4e9);
+  background-clip: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.SearchButton {
+  box-shadow: 0 10px 18px 0 rgba(62, 57, 107, .2);
+}

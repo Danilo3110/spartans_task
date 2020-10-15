@@ -25,3 +25,10 @@ export const setUsersPerPage = (per_page) => {
         payload: per_page
     }
 };
+
+export const setUserData = (selected_user) => {
+    return {
+        type: actionTypes.SET_USER_DATA,
+        payload: selected_user
+    }
+};
