@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { Row, Card, CardBody, CardHeader, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { TiArrowBackOutline } from 'react-icons/all';
@@ -25,13 +26,11 @@ const ReposContainer = props => {
         </CardHeader>
         <CardBody className={['p-4', classes.Container].join(' ')}>
           {
-            !!(props.loading && props.user_repos.length > 0) ?
+            !!(props.loading && (props.user_repos.length === 0) && (props.errors === '')) ?
 
               <Loading /> :
 
-              <Row>
-                {renderUserRepos()}
-              </Row>
+              ((props.errors !== '') ? <div className="text-danger h4 m-5 text-center">{props.errors}</div> : <Row>{renderUserRepos()}</Row>)
           }
         </CardBody>
       </Card>
@@ -43,8 +42,16 @@ const mapStateToProps = state => {
   return {
     loading: state.repos.loading,
     user_repos: state.repos.user_repos,
-    selected_user: state.users.selected_user
+    selected_user: state.users.selected_user,
+    errors: state.users.errors
   }
+};
+
+ReposContainer.propTypes = {
+  loading: PropTypes.bool,
+  user_repos: PropTypes.array,
+  selected_user: PropTypes.object,
+  errors: PropTypes.string
 };
 
 export default connect(mapStateToProps, null)(ReposContainer);

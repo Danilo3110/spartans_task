@@ -9,3 +9,5 @@ export const SET_SEARCH_DATA = 'SET_SEARCH_DATA';
 
 export const GET_REPOS_DATA = 'GET_REPOS_DATA';
 export const SET_REPOS_DATA = 'SET_REPOS_DATA';
+
+export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE';

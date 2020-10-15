@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { Row, Card, CardBody } from 'reactstrap';
 import { connect } from 'react-redux';
 import classes from './UsersContainer.module.css';
@@ -20,9 +21,7 @@ const UsersContainer = props => {
 
             <Loading /> :
 
-            <Row>
-              {renderUsers()}
-            </Row>
+            ((props.errors !== '') ? <div className="text-danger h4 m-5 text-center">{props.errors}</div> : <Row>{renderUsers()}</Row>)
         }
       </CardBody>
     </Card>
@@ -32,8 +31,15 @@ const UsersContainer = props => {
 const mapStateToProps = state => {
   return {
     loading: state.users.loading,
-    usersAll: state.users.usersAll
+    usersAll: state.users.usersAll,
+    errors: state.users.errors
   }
+};
+
+UsersContainer.propTypes = {
+  loading: PropTypes.bool,
+  usersAll: PropTypes.array,
+  errors: PropTypes.string
 };
 
 export default connect(mapStateToProps, null)(UsersContainer);

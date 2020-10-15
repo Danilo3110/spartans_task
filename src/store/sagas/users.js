@@ -13,6 +13,7 @@ export function* getUsersAll() {
     yield put(actions.setUsersAll(usersAll));
 
   } catch (error) {
-    handleErrors(error);
+    const errors = handleErrors(error);
+    yield put(actions.setErrorMessage(errors));
   }
 };

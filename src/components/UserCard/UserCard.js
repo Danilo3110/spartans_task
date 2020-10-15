@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { Row, Col, Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -38,6 +39,10 @@ const mapDispatchToProps = dispatch => {
     getReposData: (username) => dispatch(actionCreators.getReposData(username)),
     setUserData: (user) => dispatch(actionCreators.setUserData(user))
   }
+};
+
+UserCard.propTypes = {
+  data: PropTypes.object
 };
 
 export default connect(null, mapDispatchToProps)(UserCard);

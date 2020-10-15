@@ -9,7 +9,7 @@ const initialState = {
 const reducer_search = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_REPOS_DATA:
-      return updateObject(state, { user_repos: action.payload, loading: false });
+      return updateObject(state, { user_repos: action.payload, loading: !state.loading });
     default: return state;
   }
 };

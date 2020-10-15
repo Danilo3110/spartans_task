@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { Button, Row, Col, Input, InputGroup, InputGroupText } from 'reactstrap';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions';
@@ -22,6 +23,7 @@ class Search extends Component {
   };
 
   searchHandler = (type = 'search') => {
+    this.props.setErrorMessage('');
     this.props.startLoading();
     if (type === 'reset') {
       this.setState({ search_user: '' });
@@ -42,7 +44,8 @@ class Search extends Component {
       const userData = response.data;
       this.props.setUsersAll([userData]);
     } catch (error) {
-      handleErrors(error);
+      const errors = handleErrors(error);
+      this.props.setErrorMessage(errors);
     }
   };
 
@@ -58,7 +61,7 @@ class Search extends Component {
 
     return (
       <>
-        <h2 className={classes.Company}>Spartans</h2>
+        <h2 className={classes.Company}>Search Users</h2>
         <hr className="mt-0 mb-3 text-muted" />
         <Row>
           <Col sm="12" md="6" xl="6" className="pt-1 pb-1">
@@ -93,8 +96,13 @@ const mapDispatchToProps = dispatch => {
     startLoading: () => dispatch(actionCreators.startLoading()),
     setSearchData: (search) => dispatch(actionCreators.setSearchData(search)),
     setUsersAll: (data) => dispatch(actionCreators.setUsersAll(data)),
-    getUsersAll: () => dispatch(actionCreators.getUsersAll())
+    getUsersAll: () => dispatch(actionCreators.getUsersAll()),
+    setErrorMessage: (errors) => dispatch(actionCreators.setErrorMessage(errors))
   }
+};
+
+Search.propTypes = {
+  search: PropTypes.string
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

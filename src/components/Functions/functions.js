@@ -12,6 +12,9 @@ export const formatDate = (time) => {
 // Function for handling axios errors - api errors
 
 export const handleErrors = (error) => {
-    ((error.response) && (error.response !== null && error.response !== undefined)) ?
-        console.log(Object.values(error.response.data.errors)[0][0]) : console.log(error);
+    if ((error.response)) {
+        const status = error.response.status;
+        const msg = error.response.data.message;
+        return `${status} - ${msg}`;
+    } else { console.log(error); }
 };

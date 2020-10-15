@@ -13,6 +13,7 @@ export function* getReposData(action) {
     yield put(actions.setReposData(reposAll));
 
   } catch (error) {
-    handleErrors(error);
+    const errors = handleErrors(error);
+    yield put(actions.setErrorMessage(errors));
   }
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { Row, Col, Card, CardBody, Button } from 'reactstrap';
 import { BsCalendar, GrLicense, GoRepoForked, FaEye, FaStar } from 'react-icons/all';
 import { formatDate } from '../Functions';
@@ -47,6 +48,10 @@ const RepoCard = props => {
       </Card>
     </Col>
   )
+};
+
+RepoCard.propTypes = {
+  data: PropTypes.object
 };
 
 export default RepoCard;
