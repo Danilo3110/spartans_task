@@ -51,6 +51,7 @@ class Search extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    !!(this.state.search_user === '') && this.setState({ search_user: this.props.search });
   };
 
   componentWillUnmount() {

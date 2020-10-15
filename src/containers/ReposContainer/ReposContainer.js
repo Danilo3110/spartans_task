@@ -11,7 +11,11 @@ import RepoCard from '../../components/RepoCard';
 const ReposContainer = props => {
 
   const renderUserRepos = () => {
-    return [...props.user_repos].map(repo => <RepoCard data={repo} key={repo.id} />);
+    if (props.user_repos.length > 0) {
+      return [...props.user_repos].map(repo => <RepoCard data={repo} key={repo.id} />);
+    } else {
+      return (<div className="text-info h4 m-5 text-center">{'- No user repos found -'}</div>);
+    }
   };
 
   return (
