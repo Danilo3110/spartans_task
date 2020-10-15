@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import { Row, Card, CardBody, CardHeader, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import * as actionCreators from '../../store/actions';
 import { TiArrowBackOutline } from 'react-icons/all';
 import classes from './ReposContainer.module.css';
 
@@ -11,16 +12,12 @@ import RepoCard from '../../components/RepoCard';
 const ReposContainer = props => {
 
   const renderUserRepos = () => {
-    if (props.user_repos.length > 0) {
-      return [...props.user_repos].map(repo => <RepoCard data={repo} key={repo.id} />);
-    } else {
-      return (<div className="text-info h4 m-5 text-center">{'- No user repos found -'}</div>);
-    }
+    return [...props.user_repos].map(repo => <RepoCard data={repo} key={repo.id} />);
   };
 
   return (
     <>
-      <Button type="button" color='primary' className="mb-3 text-uppercase" onClick={() => props.history.goBack()}>
+      <Button type="button" color='primary' className="mb-3 text-uppercase" onClick={() => { props.setErrorMessage(''); props.history.goBack(); }}>
         <TiArrowBackOutline className="font-xl mb-1" /> {'Go back'}
       </Button>
 
@@ -51,6 +48,12 @@ const mapStateToProps = state => {
   }
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setErrorMessage: (errors) => dispatch(actionCreators.setErrorMessage(errors))
+  }
+};
+
 ReposContainer.propTypes = {
   loading: PropTypes.bool,
   user_repos: PropTypes.array,
@@ -58,4 +61,4 @@ ReposContainer.propTypes = {
   errors: PropTypes.string
 };
 
-export default connect(mapStateToProps, null)(ReposContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ReposContainer);

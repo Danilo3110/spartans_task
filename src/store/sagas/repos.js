@@ -11,6 +11,7 @@ export function* getReposData(action) {
 
     const reposAll = response.data;
     yield put(actions.setReposData(reposAll));
+    if (reposAll.length === 0) { yield put(actions.setErrorMessage('- No user repos found -')); }
 
   } catch (error) {
     const errors = handleErrors(error);
