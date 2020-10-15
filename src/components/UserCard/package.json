@@ -1,0 +1,6 @@
+{
+    "name": "user_card",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./UserCard.js"
+}

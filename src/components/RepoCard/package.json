@@ -1,0 +1,6 @@
+{
+    "name": "repo_card",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./RepoCard.js"
+}

@@ -22,6 +22,7 @@ class Search extends Component {
   };
 
   searchHandler = (type = 'search') => {
+    this.props.startLoading();
     if (type === 'reset') {
       this.setState({ search_user: '' });
       this.props.setSearchData('');
@@ -73,7 +74,7 @@ class Search extends Component {
               <BsSearch className="font-xl pb-1" /> {'Search'}
               <span className={`spinner-border ml-3 spinner-border-sm ${!!(!this.props.spinner) && 'd-none'}`} style={{ width: '1.4rem', height: '1.4rem' }}></span>
             </Button>
-            <Button type="reset" color='danger' onClick={() => this.searchHandler('reset')} className="ml-3 text-uppercase" tabIndex="3"><FaBan className="font-xl pb-1" /> {'Reset'}</Button>
+            <Button type="reset" color='danger' onClick={() => this.searchHandler('reset')} className={['ml-3 text-uppercase', classes.SearchButton].join(' ')} tabIndex="3"><FaBan className="font-xl pb-1" /> {'Reset'}</Button>
           </Col>
         </Row>
       </>
@@ -83,13 +84,13 @@ class Search extends Component {
 
 const mapStateToProps = state => {
   return {
-    loading: state.users.loading,
     search: state.search.search_user
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    startLoading: () => dispatch(actionCreators.startLoading()),
     setSearchData: (search) => dispatch(actionCreators.setSearchData(search)),
     setUsersAll: (data) => dispatch(actionCreators.setUsersAll(data)),
     getUsersAll: () => dispatch(actionCreators.getUsersAll())

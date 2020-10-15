@@ -7,7 +7,7 @@ import * as actions from '../actions';
 // Function for getting all users from api
 export function* getUsersAll() {
   try {
-    const response = yield api_axios('GET', `/users?per_page=10`, null);
+    const response = yield api_axios('GET', `/users?per_page=20`, null);
 
     const usersAll = response.data;
     yield put(actions.setUsersAll(usersAll));
