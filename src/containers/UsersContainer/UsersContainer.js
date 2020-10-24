@@ -10,7 +10,7 @@ import UserCard from '../../components/UserCard';
 const UsersContainer = props => {
 
   const renderUsers = () => {
-    return [...props.usersAll].map(user => <UserCard data={user} key={user.id} />);
+    return props.usersAll.map(user => <UserCard data={user} key={user.id} />);
   };
 
   return (

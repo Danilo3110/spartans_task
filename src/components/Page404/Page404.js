@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from './Page404.module.css';
 
-const Page404 = props => {
+const Page404 = () => {
 
     return (
         <div className={classes.notfound_div}>

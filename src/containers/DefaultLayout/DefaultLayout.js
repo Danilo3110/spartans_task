@@ -10,21 +10,15 @@ import Search from '../../components/Search';
 import UsersContainer from '../UsersContainer';
 
 class DefaultLayout extends Component {
-  _isMounted = false;
 
   resetDataHandler = () => {
     this.props.setUserData({});
     this.props.setReposData([]);
   };
 
-  UNSAFE_componentWillMount() {
-    this._isMounted = true;
+  componentDidMount() {
     !!(this.props.usersAll.length === 0) && this.props.getUsersAll();
     !!(this.props.user_repos.length > 0) && this.resetDataHandler();
-  };
-
-  componentWillUnmount() {
-    this._isMounted = false;
   };
 
   render() {

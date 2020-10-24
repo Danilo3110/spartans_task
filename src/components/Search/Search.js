@@ -14,9 +14,7 @@ class Search extends Component {
     search_user: ''
   };
 
-  inputHandler = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  inputHandler = e => this.setState({ [e.target.name]: e.target.value });
 
   keyPressed = event => {
     !!(event.key === "Enter") && this.searchHandler();
@@ -25,6 +23,7 @@ class Search extends Component {
   searchHandler = (type = 'search') => {
     this.props.setErrorMessage('');
     this.props.startLoading();
+
     if (type === 'reset') {
       this.setState({ search_user: '' });
       this.props.setSearchData('');
@@ -42,7 +41,7 @@ class Search extends Component {
     try {
       const response = await api_axios('GET', `/users/${search}?per_page=10`, null);
       const userData = response.data;
-      this.props.setUsersAll([userData]);
+      !!(this._isMounted) && this.props.setUsersAll([userData]);
     } catch (error) {
       const errors = handleErrors(error);
       this.props.setErrorMessage(errors);

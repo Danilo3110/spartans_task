@@ -12,7 +12,7 @@ import RepoCard from '../../components/RepoCard';
 const ReposContainer = props => {
 
   const renderUserRepos = () => {
-    return [...props.user_repos].map(repo => <RepoCard data={repo} key={repo.id} />);
+    return props.user_repos.map(repo => <RepoCard data={repo} key={repo.id} />);
   };
 
   return (
